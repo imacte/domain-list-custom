@@ -40,6 +40,9 @@ include:google @cn            引用其他列表（可带属性）
 - <https://raw.githubusercontent.com/imacte/v2ray-rules-dat/release/geosite.dat>
 - <https://github.com/imacte/v2ray-rules-dat/releases/latest/download/geosite.dat>
 
+## 使用本项目的项目
+
+[@imacte/v2ray-rules-dat](https://github.com/imacte/v2ray-rules-dat)
 ## 维护
 
 上游 [@Loyalsoldier/domain-list-custom](https://github.com/Loyalsoldier/domain-list-custom) 更新频率很低（一年数次）。若希望本仓库的编译器代码跟上上游改动，在本仓库点击 **Sync fork** 即可。
