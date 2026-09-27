@@ -1,0 +1,23 @@
+# 自定义列表：文件放在 custom-data/ 下，build.yml 会把它拷进 v2fly/domain-list-community 的 data/ 目录，
+# 于是生成的 geosite.dat 里就多了一个名为 mygames 的列表，规则里写 geosite:mygames 即可。
+#
+# 语法（与 v2fly/domain-list-community 完全一致）：
+#   一行一条，空行和 # 开头的注释会被忽略
+#   example.com          默认=域名后缀匹配，等价于 Xray 的 domain:example.com（含所有子域）
+#   full:example.com     精确匹配，等价于 domain:full:example.com
+#   keyword:example      子串匹配
+#   regexp:^ad\.         正则匹配
+#   include:google @cn   引入别的列表（可带属性）
+#   行尾可加属性，如 example.com @cn
+
+# 泰拉瑞亚 CalamityOverhaul 相关站点
+calamity-overhaul.cc
+
+# Steam 下载服务器（列表 category-game-platforms-download 里没有这个域名，所以单独留着）
+steamserver.net
+
+# Epic 下载（官方列表里是 full: 精确匹配，这里放宽成域名后缀，覆盖更多子域）
+download.epicgames.com
+
+# Windows 联网探测（保证系统显示"已连接"）
+msftncsi.com

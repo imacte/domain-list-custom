@@ -48,6 +48,11 @@ jobs:
           echo "include:geolocation-!cn @cn" >> ./domain-list-community/data/cn
           echo "include:geolocation-cn @!cn" >> ./domain-list-community/data/geolocation-\!cn
 
+      - name: Add custom lists from custom-data
+        if: ${{ env.NeedToSync }}
+        run: |
+          cp -v ./custom-data/* ./domain-list-community/data/
+
       - name: Get dependencies and run
         if: ${{ env.NeedToSync }}
         run: |
