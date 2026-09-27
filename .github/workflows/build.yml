@@ -16,8 +16,10 @@ jobs:
     steps:
       - name: Compare latest tags and set variables
         run: |
-          upstreamLatestTag=$(curl -sSL --connect-timeout 5 --retry 5 -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/v2fly/domain-list-community/releases/latest | grep "tag_name" | cut -d\" -f4)
-          thisLatestTag=$(curl -sSL --connect-timeout 5 --retry 5 -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/releases/latest | grep "tag_name" | cut -d\" -f4)
+          # "|| true" 用于兼容 fork 仓库尚无任何 Release 的情况：此时 grep 取不到值，
+          # 在 GitHub Actions 默认的 `-eo pipefail` 下会导致整步失败（上游自己有 Release，不会遇到）
+          upstreamLatestTag=$(curl -sSL --connect-timeout 5 --retry 5 -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/v2fly/domain-list-community/releases/latest | grep "tag_name" | cut -d\" -f4 || true)
+          thisLatestTag=$(curl -sSL --connect-timeout 5 --retry 5 -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/releases/latest | grep "tag_name" | cut -d\" -f4 || true)
           if [[ $upstreamLatestTag != $thisLatestTag ]]; then
             echo "NeedToSync=true" >> $GITHUB_ENV
           fi
